@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using com.ToysAndGames.Server.WebAPI.DAL.Context;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -27,7 +28,8 @@ namespace com.ToysAndGames.Server.WebAPI
         {
             services.AddDbContext<ApiContext>();
 
-            services.AddControllers();
+            //Incorporating FluentValidation into controllers.
+            services.AddControllers().AddFluentValidation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
