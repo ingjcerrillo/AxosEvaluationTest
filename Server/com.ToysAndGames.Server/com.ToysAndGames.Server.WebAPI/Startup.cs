@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using com.ToysAndGames.Server.WebAPI.DAL.Context;
+using com.ToysAndGames.Server.WebAPI.DAL.Models;
+using com.ToysAndGames.Server.WebAPI.ModelValidation;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,8 +31,11 @@ namespace com.ToysAndGames.Server.WebAPI
         {
             services.AddDbContext<ApiContext>();
 
-            //Incorporating FluentValidation into controllers.
+            //Incorporates FluentValidation into controllers.
             services.AddControllers().AddFluentValidation();
+
+            //Adds custom Product validation rules
+            services.AddTransient<IValidator<Product>, ProductValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
