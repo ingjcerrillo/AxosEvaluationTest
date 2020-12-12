@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using com.ToysAndGames.Server.WebAPI.DAL.Context;
 using com.ToysAndGames.Server.WebAPI.DAL.Models;
+using com.ToysAndGames.Server.WebAPI.DAL.Repositories.Generic;
 using com.ToysAndGames.Server.WebAPI.ModelValidation;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -36,6 +37,10 @@ namespace com.ToysAndGames.Server.WebAPI
 
             //Adds custom Product validation rules
             services.AddTransient<IValidator<Product>, ProductValidator>();
+
+            //Adds Repositories IoC
+            services.AddScoped<IUnitOfWork, GenericUnitOfWork>();
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
