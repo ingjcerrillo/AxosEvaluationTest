@@ -43,6 +43,12 @@ namespace com.ToysAndGames.Server.WebAPI.Controllers
             }
 
             var result = await genericRepository.GetByIdAsync(id);
+
+            if(result == null)
+            {
+                return NotFound();
+            }
+
             return Ok(
                 result
                 );
