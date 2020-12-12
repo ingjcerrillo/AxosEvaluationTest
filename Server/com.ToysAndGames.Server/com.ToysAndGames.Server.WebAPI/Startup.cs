@@ -41,6 +41,17 @@ namespace com.ToysAndGames.Server.WebAPI
             //Adds Repositories IoC
             services.AddScoped<IUnitOfWork, GenericUnitOfWork>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+            //Allows all origins, methods and headers. For test purposes only.
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +61,8 @@ namespace com.ToysAndGames.Server.WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors();
 
             app.UseRouting();
 
