@@ -22,6 +22,10 @@ namespace com.ToysAndGames.Server.WebAPI.DAL.Repositories.Generic
         public GenericUnitOfWork(ApiContext apiContext)
         {
             Context = apiContext;
+
+            //A bit tricky here, as this is not a migration we have to force the context to seed the data.
+            if(Context.Database.IsInMemory())
+                Context.Database.EnsureCreated();
         }
 
         public void Commit()
