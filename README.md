@@ -9,6 +9,7 @@ Server was built using Asp.Net Core 3.1/WebApi
 1. IISExpress must be enabled to work with visual studio
 2. Use Visual studio 2019 to open server's solution.
 3. Use Visual studio code as client's project editor.
+4. Server must be running on port 60868 of localhost.
 
 ## Server
 
