@@ -4,12 +4,6 @@
   }
 </style>
 <mat-toolbar [color]="'primary'">
-  <button
-  mat-icon-button class="example-icon"
-  aria-label="Example icon-button with menu icon"
-  (click)="drawer.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button>
   <span>{{title}}</span>
   <span class="example-spacer"></span>
   <a mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" target="_blank" href="https://github.com/ingjcerrillo/AxosEvaluationTest">
@@ -17,12 +11,4 @@
   </a>
 </mat-toolbar>
 
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    <p>Lorem, ipsum dolor sit amet consectetur.</p>
-  </mat-drawer>
-
-  <router-outlet></router-outlet>
-
-</mat-drawer-container>
+<router-outlet></router-outlet>

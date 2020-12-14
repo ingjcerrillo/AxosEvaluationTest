@@ -31,7 +31,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   /** Consumes productservice getall and fills product table */
-  private loadProductTable():void {
+  public loadProductTable():void {
     this.dataSourceSubscription = this.productService.getAll().subscribe(e => {
       this.dataSource.data = e;
     }, error => {}, () => {
