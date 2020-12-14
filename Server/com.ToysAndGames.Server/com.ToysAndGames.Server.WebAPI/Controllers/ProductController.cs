@@ -67,7 +67,7 @@ namespace com.ToysAndGames.Server.WebAPI.Controllers
             await genericRepository.CreateAsync(product);
             unitOfWork.Commit();
 
-            return Ok();
+            return Ok(true);
         }
 
         // POST: /Api/Product/Update
@@ -114,7 +114,7 @@ namespace com.ToysAndGames.Server.WebAPI.Controllers
                 return NotFound();
             }
 
-            return Ok();
+            return Ok(true);
         }
     }
 }
