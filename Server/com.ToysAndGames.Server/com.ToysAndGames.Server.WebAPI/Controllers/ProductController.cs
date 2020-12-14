@@ -71,7 +71,7 @@ namespace com.ToysAndGames.Server.WebAPI.Controllers
         }
 
         // POST: /Api/Product/Update
-        [HttpPost]
+        [HttpPut]
         [Route("Update")]
         public async Task<IActionResult> UpdateProduct([FromBody]Product product)
         {
@@ -93,11 +93,11 @@ namespace com.ToysAndGames.Server.WebAPI.Controllers
                 return NotFound();
             }
 
-            return Ok();
+            return Ok(true);
         }
 
         // POST: /Api/Product/Delete
-        [HttpGet]
+        [HttpDelete]
         [Route("Delete/{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
