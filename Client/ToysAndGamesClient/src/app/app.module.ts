@@ -22,13 +22,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,

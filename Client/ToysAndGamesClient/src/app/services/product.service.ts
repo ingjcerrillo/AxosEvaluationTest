@@ -28,13 +28,8 @@ export class ProductService {
     return this.http.post<boolean>(baseURL + `/Create`, product);
   }
 
-  deleteProducts(products:Product[]) : void {
-    let deleteTasks$ = [];
-    products.forEach(product => {
-      deleteTasks$.push(
-        this.http.delete(baseURL + `/Delete/${product.id}`)
-      );
-    });
+  deleteProduct(id: number) : Observable<boolean> {
+    return this.http.delete<boolean>(baseURL + `/Delete/${id}`);
   }
 
 }

@@ -50,5 +50,7 @@
   </mat-error>
 </mat-form-field>
 <br>
-<button mat-raised-button [color]="'primary'" (click)="saveProduct()">{{ productDetail.id > 0 ? 'Update' : 'Create' }}</button>
-<button mat-raised-button [color]="'warn'" (click)="dialogRef.close()">Cancel</button>
+<div class="action-bar">
+  <button mat-raised-button [color]="'primary'" (click)="saveProduct()">{{ productDetail.id > 0 ? 'Update' : 'Create' }}</button>
+  <button mat-raised-button [color]="'warn'" (click)="dialogRef.close()">Cancel</button>
+</div>

@@ -66,8 +66,9 @@
 
   <!-- Table Actions row -->
   <ng-container matColumnDef="table-actions">
-    <td mat-footer-cell *matFooterCellDef [colSpan]="productList._contentColumnDefs.length">
-      <button *ngIf="selection.hasValue()" mat-stroked-button color="warn">Delete ({{selection.selected.length}})</button>
+    <td mat-footer-cell *matFooterCellDef [colSpan]="displayedColumns.length" class="action-bar">
+      <button mat-stroked-button color="primary" (click)="openModal()">New Product</button>
+      <button *ngIf="selection.hasValue()" mat-stroked-button color="warn" (click)="confirmDelete()">Delete ({{selection.selected.length}})</button>
     </td>
   </ng-container>
 

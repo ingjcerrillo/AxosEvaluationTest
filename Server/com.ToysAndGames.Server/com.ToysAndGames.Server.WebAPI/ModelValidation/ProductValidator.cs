@@ -26,7 +26,7 @@ namespace com.ToysAndGames.Server.WebAPI.ModelValidation
                 .LessThanOrEqualTo(1000)
                 .WithMessage("Price must be between $1 and $1000.");
 
-            //InMemoryDb will not validate relational rules like field's lenght so we add ir manually.
+            //InMemoryDb will not validate relational rules like field's lenght so we add it manually.
             RuleFor(x => x.Name).MaximumLength(50).NotEmpty().NotNull();
 
             RuleFor(x => x.Description).MaximumLength(100);

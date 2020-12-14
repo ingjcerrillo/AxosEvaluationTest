@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-product-edit',
@@ -24,6 +25,9 @@ export class ProductEditComponent implements OnInit {
       }
   }
 
+  /**
+   * Decides whether the product should be updated or created based on its id.
+   */
   public saveProduct(): void {
     if(this.productDetail.id > 0){
       this.updateProduct();
@@ -35,7 +39,7 @@ export class ProductEditComponent implements OnInit {
   private updateProduct() : void {
     this.productService.updateProduct(this.productDetail).subscribe(successful => {
       if(successful){
-        this.snackbar.open('Product created successfully', '', { duration: 1500, politeness: 'polite' });
+        this.snackbar.open('Product updated successfully', 'Ok', { duration: 2000, politeness: 'polite' });
         this.dialogRef.close(true);
       }
     });
@@ -43,13 +47,12 @@ export class ProductEditComponent implements OnInit {
 
   private createProduct() : void {
     this.productService.createProduct(this.productDetail).subscribe(successful => {
-      if(successful){
-        this.snackbar.open('Product updated successfully');
-        this.dialogRef.close(true);
-      }
+      this.snackbar.open('Product created successfully', 'Ok', { duration: 2000, politeness: 'polite' });
+      this.dialogRef.close(true);
     });
   }
 
+  /** generates a new product */
   private newProduct(): Product{
     return {
       id: 0,
