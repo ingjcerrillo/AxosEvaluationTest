@@ -1,0 +1,54 @@
+<mat-form-field>
+  <mat-label>Name</mat-label>
+  <input matInput type="text" required maxlength="50" placeholder="An awesome name" [(ngModel)]="productDetail.name" #name="ngModel" name="name" />
+  <mat-error *ngIf="name.errors && name.errors.required">
+    Name is required
+  </mat-error>
+  <mat-error *ngIf="name.errors && name.errors.maxlength">
+    Lenght must be 50 or less
+  </mat-error>
+</mat-form-field>
+<br>
+<mat-form-field>
+  <mat-label>Description</mat-label>
+  <textarea matInput maxlength="100" placeholder="An awesome description" [(ngModel)]="productDetail.description" #description="ngModel" name="description"></textarea>
+</mat-form-field>
+<br>
+<mat-form-field>
+  <mat-label>Age Restriction</mat-label>
+  <input matInput type="number" min="0" max="100" maxlength="3" placeholder="0" [(ngModel)]="productDetail.ageRestriction" #ageRestriction="ngModel" name="ageRestriction" />
+  <mat-error *ngIf="ageRestriction.errors && ageRestriction.errors.min">
+    Age must be at least 0
+  </mat-error>
+  <mat-error *ngIf="ageRestriction.errors && ageRestriction.errors.max">
+    Age must be 100 or less
+  </mat-error>
+</mat-form-field>
+<br>
+<mat-form-field>
+  <mat-label>Company</mat-label>
+  <input matInput type="text" required maxlength="50" placeholder="An awesome name" [(ngModel)]="productDetail.company" #company="ngModel" name="company" />
+  <mat-error *ngIf="company.errors && company.errors.required">
+    Company is required
+  </mat-error>
+  <mat-error *ngIf="company.errors && company.errors.maxlength">
+    Lenght must be 50 or less
+  </mat-error>
+</mat-form-field>
+<br>
+<mat-form-field>
+  <mat-label>Price</mat-label>
+  <input matInput required type="number" min="1" max="1000" maxlength="4" placeholder="1" [(ngModel)]="productDetail.price" #price="ngModel" name="price" />
+  <mat-error *ngIf="price.errors && price.errors.required">
+    Price is required
+  </mat-error>
+  <mat-error *ngIf="price.errors && price.errors.min">
+    Price must be at least 0
+  </mat-error>
+  <mat-error *ngIf="price.errors && price.errors.max">
+    Price must be 100 or less
+  </mat-error>
+</mat-form-field>
+<br>
+<button mat-raised-button [color]="'primary'" (click)="saveProduct()">{{ productDetail.id > 0 ? 'Update' : 'Create' }}</button>
+<button mat-raised-button [color]="'warn'" (click)="dialogRef.close()">Cancel</button>
