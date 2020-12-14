@@ -23,11 +23,9 @@ export class RequestErrorInterceptorService implements HttpInterceptor {
             break;
           case HttpStatusCodes.BAD_REQUEST:
             if(err.error){
-              // for (var prop in err.error){
-              //   if(Object.prototype.hasOwnProperty.call(err.error, prop)){
-
-              //   }
-              // }
+              if(err.error.errors){
+                this.processServerValidationErrors(err.error.errors);
+              }
             }
             break;
           case HttpStatusCodes.REQUEST_TIMEOUT:
@@ -41,6 +39,19 @@ export class RequestErrorInterceptorService implements HttpInterceptor {
         return throwError(err.status);
       })
     );
+  }
+
+  private processServerValidationErrors(errors : any){
+    let propertyNames = Object.getOwnPropertyNames(errors);
+    let errorList :  any[];
+    if(propertyNames){
+      propertyNames.forEach(p => {
+        let errorList = errors[p];
+        errorList.forEach((e: string) => {
+          this.NotificarError(e);
+        });
+      });
+    }
   }
 
   private NotificarAdvertencia(mensaje:string) : void {
