@@ -32,16 +32,6 @@ namespace com.ToysAndGames.Server.WebAPI
         {
             services.AddDbContext<ApiContext>();
 
-            //Incorporates FluentValidation into controllers.
-            services.AddControllers().AddFluentValidation();
-
-            //Adds custom Product validation rules
-            services.AddTransient<IValidator<Product>, ProductValidator>();
-
-            //Adds Repositories IoC
-            services.AddScoped<IUnitOfWork, GenericUnitOfWork>();
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-
             //Allows all origins, methods and headers. For test purposes only.
             services.AddCors(options =>
             {
@@ -52,6 +42,16 @@ namespace com.ToysAndGames.Server.WebAPI
                     .AllowAnyHeader();
                 });
             });
+
+            //Incorporates FluentValidation into controllers.
+            services.AddControllers().AddFluentValidation();
+
+            //Adds custom Product validation rules
+            services.AddTransient<IValidator<Product>, ProductValidator>();
+
+            //Adds Repositories IoC
+            services.AddScoped<IUnitOfWork, GenericUnitOfWork>();
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,9 +62,9 @@ namespace com.ToysAndGames.Server.WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors();
-
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
