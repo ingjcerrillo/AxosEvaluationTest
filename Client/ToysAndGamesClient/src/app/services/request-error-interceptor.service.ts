@@ -16,10 +16,10 @@ export class RequestErrorInterceptorService implements HttpInterceptor {
       catchError((err:HttpErrorResponse) => {
         switch(err.status){
           case HttpStatusCodes.NOT_FOUND:
-            this.NotificarError('No se encontró el elemento que se deseaba modificar.');
+            this.NotificarError('We couldnt find the item you are looking for');
             break;
           case HttpStatusCodes.INTERNAL_SERVER_ERROR:
-            this.NotificarError('Ocurrió un problema en el servidor al intentar procesar la solicitud. Operación cancelada.');
+            this.NotificarError('An error ocurred in the server while processing your request. Operation was cancelled.');
             break;
           case HttpStatusCodes.BAD_REQUEST:
             if(err.error){
@@ -29,10 +29,10 @@ export class RequestErrorInterceptorService implements HttpInterceptor {
             }
             break;
           case HttpStatusCodes.REQUEST_TIMEOUT:
-            this.NotificarError('El tiempo de espera para procesar la solicitud expiró. Compruebe su conexión y vuelva a intentar más tarde.');
+            this.NotificarError('Execution time limit was reached. Check your connection or try again later');
             break;
           default:
-            this.NotificarError('Ocurió un error no identificado.')
+            this.NotificarError('An unknown error occured. Please try again later')
             break;
         }
 
